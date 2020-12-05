@@ -10,7 +10,7 @@ provider:
     TABLE_PRODUCTS: productos-${self:provider.stage}
     LOG_ENVIRONMENT: ${file(./serverless.env.yml):${opt:envrt}.LOGGER_ROOT_LEVEL}
     PATH_RESOURCES: /v1/javeriana/test
-    iamRoleStatements:
+  iamRoleStatements:
       - Effect: Allow
         Action:
           - dynamodb:Scan
@@ -24,4 +24,11 @@ functions:
       - http:
           path: ${self:provider.environment.PATH_RESOURCES}/getAll
           method: get
+    memorySize: 128
+  createProduct:
+    handler: handler.create
+    events:
+      - http:
+          path: ${self:provider.environment.PATH_RESOURCES}/create-products
+          method: post
     memorySize: 128

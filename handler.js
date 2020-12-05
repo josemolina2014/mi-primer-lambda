@@ -24,3 +24,23 @@ module.exports.getAll = async (event, context) => {
         return sendResponse(constantes.SERVER_ERROR, JSON.stringify(error))
     }
 }
+
+module.exports.create = async (event, context, callback) => {
+    try {
+        await data.insertProduct(JSON.parse(event.body))
+        return callback(null, sendResponse(constantes.SUCESSFULL_EXECUTION, JSON.stringify({
+            message: 'success'
+        })))
+    } catch (error) {
+        console.error(error)
+        if (error instanceof TypeError){
+            return callback(null, sendResponse(constantes.SERVER_ERROR, JSON.stringify({
+                message: error.message
+            })))
+        } else {
+            return callback(null, sendResponse(constantes.SERVER_ERROR, JSON.stringify({
+                message: error
+            })))
+        }
+    }
+}
