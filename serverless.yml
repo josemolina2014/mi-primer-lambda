@@ -4,8 +4,14 @@ frameworkVersion: '2'
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-west-2'}
 
 
 functions:
-  hello:
-    handler: handler.hello
+  miMetodoClase:
+    handler: handler.miMetodoClase
+    events:
+      - http:
+          path: /prueba/saludo
+          method: get
