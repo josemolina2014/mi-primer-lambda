@@ -6,7 +6,7 @@ module.exports.miMetodoClase = async event => {
         statusCode: 200,
         body: JSON.stringify(
             {
-                message: 'Hola ${nombre}'
+                message: `Hola ${nombre}`
             },
             null,
             2
