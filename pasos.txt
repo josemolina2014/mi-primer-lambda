@@ -1,0 +1,27 @@
+1. perfil de desarrollo
+aws configure --profile developer
+
+2. creacion de proyecto serverless 
+serverless create -t aws-nodejs -p mi-primer-lambda
+
+3.1 ingresar al proyeto creado
+cd mi-primer-lambda 
+
+3.2  inicializar proyecto npm
+npm init
+
+4.Crear base de datos NoSQL Dynamo 
+aws dynamodb create-table --table-name productos-dev --attribute-definitions AttributeName=marca,AttributeType=S AttributeName=referencia,AttributeType=S --key-schema AttributeName=marca,KeyType=HASH AttributeName=referencia,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --profile developer 
+
+5. Proyecto standard
+npm i standard --save-dev 
+
+6. Despliegue
+serverless deploy --aws-profile developer --envrt dev
+
+
+
+
+
+
+aws dynamodb create-table --table-name productos-dev --attribute-definitions AttributeName=marca,AttributeType=S AttributeName=referencia,AttributeType=S --key-schema AttributeName=marca,KeyType=HASH AttributeName=referencia,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5 --profile developer 
